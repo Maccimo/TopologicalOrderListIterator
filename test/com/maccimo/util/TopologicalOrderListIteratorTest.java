@@ -97,7 +97,7 @@ public class TopologicalOrderListIteratorTest {
         private final Map<Integer, int[]> itemDependencies;
 
         public TestDependencyProvider() {
-            this.itemDependencies = new HashMap<Integer, int[]/*Set<Integer>*/>();
+            this.itemDependencies = new HashMap<Integer, int[]>();
         }
 
         public void addDependencies(int itemIndex, int[] dependencies) {
