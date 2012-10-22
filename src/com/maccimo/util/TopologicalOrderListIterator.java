@@ -103,9 +103,7 @@ public class TopologicalOrderListIterator<E> implements ListIterator<E> {
         for(int i = 0; i < listSize; i++) {
             int[] dependencies = provider.dependencies(i);
             if (dependencies != null) {
-                for(int j = 0; j < dependencies.length; j++) {
-                    int k = dependencies[j];
-
+                for(int k : dependencies) {
                     if ((k < 0)||(k >= listSize)) {
                         throw new UnsatisfiedDependencyException();
                     } else {
