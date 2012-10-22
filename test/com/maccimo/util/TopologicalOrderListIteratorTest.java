@@ -2,10 +2,11 @@ package com.maccimo.util;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
+import java.util.List;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -17,7 +18,7 @@ public class TopologicalOrderListIteratorTest {
 
     @Test(expected = NullPointerException.class)
     public void testNullRef() {
-        TopologicalOrderListIterator iterator = new TopologicalOrderListIterator(null, null);
+        TopologicalOrderListIterator<Integer> iterator = new TopologicalOrderListIterator<Integer>(null, null);
     }
 
     @Test(expected = CircularDependencyException.class)
@@ -66,9 +67,7 @@ public class TopologicalOrderListIteratorTest {
         assertEquals("Count of items and dependencies should be equal", items.length, dependencies.length);
 
         list = new ArrayList<T>(items.length);
-        for(T item : items) {
-            list.add(item);
-        }
+        list.addAll(Arrays.asList(items));
 
         provider = new TestDependencyProvider();
         for(int i = 0; i < dependencies.length; i++) {
@@ -95,7 +94,7 @@ public class TopologicalOrderListIteratorTest {
 
     private static class TestDependencyProvider implements DependencyProvider {
 
-        private Map<Integer, int[]> itemDependencies;
+        private final Map<Integer, int[]> itemDependencies;
 
         public TestDependencyProvider() {
             this.itemDependencies = new HashMap<Integer, int[]/*Set<Integer>*/>();
