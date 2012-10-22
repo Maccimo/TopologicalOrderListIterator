@@ -1,1 +1,4 @@
-This file was created by IntelliJ IDEA (Leda) IU-122.592 for binding GitHub repository
+TopologicalOrderListIterator provide ListIterator implementation allowing traverse underlying List in topological order.
+Order is defined by dependencies provided by DependencyProvider implementation.
+Modifying of underlying list is not supported.
+Concurrent changes not detected at all. 
